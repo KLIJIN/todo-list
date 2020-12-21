@@ -1,6 +1,6 @@
 import React from "react"
 
-const Form =({setinputText, setTodos, todos, inputText }) => {
+const Form =({setinputText, setTodos, todos, inputText, setStatus }) => {
 
     const inputTextHandler = (e) => {
         console.log(e.target.value)
@@ -20,7 +20,10 @@ const Form =({setinputText, setTodos, todos, inputText }) => {
         setinputText(''); //обнуляем поле инпута
     }
 
-    //console.log("[Form_preRender]", todos)
+    const statusHandler = (e) => {
+        console.log(e);
+        setStatus(e.target.value)
+    }
 
 
     return (
@@ -28,7 +31,7 @@ const Form =({setinputText, setTodos, todos, inputText }) => {
             <input onChange={inputTextHandler} type="text" className= "todo-input" value={inputText} placeholder="введи в меня что-то" />
             <button onClick={submitHandler}  className="todo-button" type="submit" >  <i className="fas fa-plus-square"></i></button> {/* сюда возможно онклик и отменить действие по умолчанию*/}
             <div className="select">
-                <select name="todos" className="filter-todo" >
+                <select onChange={statusHandler} name="todos" className="filter-todo" >
                     <option value="all">All</option>
                     <option value="completed">completed</option>
                     <option value="uncompleted">uncompleted</option>
